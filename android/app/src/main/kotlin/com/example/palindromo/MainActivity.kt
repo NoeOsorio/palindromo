@@ -1,4 +1,4 @@
-package com.example.palindromo
+package com.noeosorio.palindromo
 
 import io.flutter.embedding.android.FlutterActivity
 

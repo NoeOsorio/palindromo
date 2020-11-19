@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PalindromoInput extends StatefulWidget {
-  PalindromoInput({Key key, this.esPalindromo}) : super(key: key);
+  PalindromoInput({Key key, this.esPalindromo, this.word}) : super(key: key);
 
   final ValueSetter<bool> esPalindromo;
+  final ValueSetter<String> word;
 
   @override
   _PalindromoInputState createState() => _PalindromoInputState();
@@ -35,6 +37,7 @@ class _PalindromoInputState extends State<PalindromoInput> {
     super.initState();
     controller = TextEditingController(text: "");
     controller.addListener(() {
+      widget.word(controller.text);
       bool res = palindromo(controller.text);
       widget.esPalindromo(res);
     });
@@ -44,13 +47,14 @@ class _PalindromoInputState extends State<PalindromoInput> {
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.all(40),
-        child: TextField(
+        child: CupertinoTextField(
           controller: controller,
-          decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              fillColor: Colors.amber,
-              // border: InputBorder.none,
-              hintText: 'Ingrese una palabra para saber si es palindromo'),
+
+          // decoration: InputDecoration(
+          //     contentPadding: EdgeInsets.all(10),
+          //     fillColor: Colors.amber,
+          //     // border: InputBorder.none,
+          //     hintText: 'Ingrese una palabra para saber si es palindromo'),
         ));
   }
 }
